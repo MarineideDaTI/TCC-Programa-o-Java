@@ -1,0 +1,69 @@
+@startuml
+Class Show {
+-Id: int
+-Artista: string
+-Data: date
+-ValorIngresso: double
++Evento(Id: int, Artista: string, Data: date, ValorIngresso: double)
++getId(): int
++getArtista(): string
++getData(): date
++getValorIngresso(): double
++setArtista(nome: string): void
++setData(data: date): void
++setValorIngresso(ValorIngresso: double) void
+}
+
+Class Ingresso {
+-Id: int
+-Codigo: string
+-Preco: double
+-Evento: show
++Ingresso(Id: int, Codigo: string, Preco: double, Evento: show)
++getId(): int
++getCodigo(): string
++getPreco(): double
++getEvento(): show
++setId(Id: int): void
++setCodigo(Codigo: string): void
++setPreco(Preco: double) void
++setEvento(Evento: double) void
+}
+
+Class Client {
+-Id: int
+-Nome: string
+-Documento: double
++Cliente(Id: int, Nome: string, Documento: string)
++getId(): int
++getNome(): string
++getDocumento(): String
++setId(Id: int): void
++setNome(Nome: string): void
++setDocumento(Documento: string) void
+}
+
+class Pagamento {
+-Id: int
+-Valor: double
+-Metodo: String
+-Cliente: Cliente
++Pagamento(Id: int, Valor: double, Metodo: String, Cliente: Cliente)
++getId(): int
++getValor(): double
++getMetodo(): String
++getCliente(): Cliente
+}
+
+class Local {
+-Id: int
+-Nome: String
+-Endereco: String
++Local(Id: int, Nome: String, Endereco: String)
++getId(): int
++getNome(): String
++getEndereco(): String
+}
+
+Usuários do sistema: Crianças e professores da rede municipal de ensino
+Usuário deseja comprar ingressos para Show de Talentos.

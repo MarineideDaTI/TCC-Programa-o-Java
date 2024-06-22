@@ -1,0 +1,15 @@
+public class obras{
+	private String isbn;
+	private String titulo;
+	private String subtitulo;
+	private String volume;
+	private String autoria;
+	private String editora;
+	private integer ano;
+	private String local_editora;
+	private String serie;
+	private String colecao;
+	private String categoria;
+	private String localizacao_estante;
+	private String curso;
+}

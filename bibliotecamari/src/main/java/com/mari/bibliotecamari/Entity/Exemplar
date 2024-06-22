@@ -1,0 +1,8 @@
+public class obras{
+    private String isbn;
+    private String tombo;
+    private String edicao;
+    private String paginas;
+    private String localizacao;
+    private String quantidade;
+}

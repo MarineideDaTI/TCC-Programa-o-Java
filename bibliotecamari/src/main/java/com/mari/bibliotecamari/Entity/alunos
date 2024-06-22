@@ -1,0 +1,12 @@
+packpage bibliotecamari.entity;
+
+public class Alunos{
+	private integer cod_usuario;
+	private String nome;
+	private String endereco;
+	private String telefone;
+	private String curso;
+	private String turma;
+	private String periodo;
+
+}

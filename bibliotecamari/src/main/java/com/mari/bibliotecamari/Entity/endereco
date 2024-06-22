@@ -1,0 +1,4 @@
+public class endereco{
+	private Long enderecoresidencial;
+	private Long enderecoeletronico;
+}

@@ -1,0 +1,7 @@
+public class Curso{
+	private id_curso;
+	private String materias;
+	private String turma;
+	private String autorizacao_mec;
+
+}
