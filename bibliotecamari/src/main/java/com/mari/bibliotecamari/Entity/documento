@@ -1,6 +1,0 @@
-public class documento{
-	private integer cod_usuario;
-	private integer ra;
-	private String rg;
-	private integer cpf;
-}
