@@ -166,3 +166,8 @@ CREATE TABLE Curso (
     PRIMARY KEY (cod_curso),
     UNIQUE (autorizacao_mec)
 );
+
+
+
+//
+cod_ usuário: autocomplemento: tipo_usuario + serial

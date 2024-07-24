@@ -1,0 +1,5 @@
+rootProject.name = 'ProjetoBiblioteca'
+
+include ':app'
+include ':lib'
+
