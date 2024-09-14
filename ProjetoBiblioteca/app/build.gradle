@@ -1,10 +1,9 @@
 plugins {
-    id 'application'
-    id 'java'
-
+    id: 'application'
+    id: 'java'
 }
 
-dependecies{
+dependencies{
     implementation project(':lib')
 }
 
