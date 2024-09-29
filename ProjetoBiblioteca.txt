@@ -1,0 +1,173 @@
+CREATE TABLE Obras (
+    isbn VARCHAR (20) NOT NULL,
+    titulo VARCHAR (100) NOT NULL,
+    subtitulo VARCHAR (100) NOT NULL,
+    volume VARCHAR (10),
+    entrada_principal VARCHAR (100),
+    entrada_secundaria VARCHAR (100),
+    ano INT (4),
+    cod_imprenta INT,
+    serie VARCHAR (50),
+    colecao VARCHAR (50),
+    categoria VARCHAR (50),
+    localizacao VARCHAR (50),
+    cod_curso INT,
+    cod_circulacao INT,
+    UNIQUE (isbn),
+    FOREIGN KEY (cod_imprenta) REFERENCES Imprenta (cod_imprenta),
+    FOREIGN KEY (cod_curso) REFERENCES Curso (cod_curso),
+    FOREIGN KEY (cod_circulacao) REFERENCES Circulacao (cod_circulacao)
+);
+
+
+CREATE TABLE Imprenta (
+    cod_imprenta SERIAL,
+    editora VARCHAR(100) NOT NULL,
+    cidade VARCHAR (50),
+    estado VARCHAR (30),
+    PRIMARY KEY (cod_imprenta)
+);
+
+
+CREATE TABLE Exemplar (
+    tombo VARCHAR (15) NOT NULL,
+    edicao int,
+    paginas int,
+    localizacao VARCHAR (30),
+    quantidade INT,
+    cod_obra VARCHAR (20),
+    FOREIGN KEY (cod_obra) REFERENCES Obras (isbn),
+    PRIMARY KEY (tombo)
+);
+
+
+CREATE TABLE Circulacao (
+    cod_circulacao INT,
+    cod_usuario INT NOT NULL,
+    tombo VARCHAR(15) NOT NULL,
+    emprestimo DATE NOT NULL,
+    devolucao DATE NOT NULL,
+    PRIMARY KEY (cod_circulacao),
+    FOREIGN KEY (cod_usuario) REFERENCES Usuarios(cod_usuario)
+);
+
+
+CREATE TABLE Atraso (
+    cod_atraso INT NOT NULL,
+    cod_circulacao INT NOT NULL,
+    cod_usuario INT NOT NULL,
+    dias_atraso INT,
+    multa_dia INT,
+    valor_multa INT,
+    PRIMARY KEY (cod_atraso),
+    FOREIGN KEY (cod_circulacao) REFERENCES Circulacao(cod_circulacao),
+    FOREIGN KEY (cod_usuario) REFERENCES Usuarios(cod_usuario)
+);
+
+CREATE TABLE Documento (
+    cod_documento VARCHAR(50),
+    ra INT,
+    rg VARCHAR (9),
+    cpf VARCHAR (11),
+    cnpj VARCHAR (14),
+    PRIMARY KEY (cod_documento),
+    UNIQUE (ra),
+    UNIQUE (rg),
+    UNIQUE (cpf),
+    UNIQUE (cnpj)
+);
+
+
+CREATE TABLE Telefone (
+    cod_telefone VARCHAR (14),
+    "particular" VARCHAR (14),
+    comercial VARCHAR (14),
+    PRIMARY KEY (cod_telefone)
+);
+
+
+CREATE TABLE Endereco (
+    cod_endereco INT NOT NULL,
+    residencial	VARCHAR(50),
+    eletronico VARCHAR(50) NOT NULL,
+    PRIMARY KEY (cod_endereco),
+    UNIQUE (eletronico)
+);
+
+
+CREATE TABLE Usuarios (
+    cod_usuario INT NOT NULL,
+    tipo_usuario VARCHAR (20) NOT NULL,
+    PRIMARY KEY (cod_usuario)
+);
+
+
+CREATE TABLE Alunos (
+    cod_usuario INT NOT NULL,
+    nome VARCHAR(50),
+    cod_documento VARCHAR (50),    
+    cod_telefone VARCHAR (14),
+    cod_endereco INT,
+    cod_curso INT,    
+    cod_circulacao INT,
+    PRIMARY KEY (cod_usuario),
+    FOREIGN KEY (cod_documento) REFERENCES Documento(cod_documento),
+    FOREIGN KEY (cod_telefone) REFERENCES Telefone(cod_telefone),
+    FOREIGN KEY (cod_curso) REFERENCES Curso(cod_curso),
+    FOREIGN KEY (cod_circulacao) REFERENCES Circulacao(cod_circulacao),
+    FOREIGN KEY (cod_endereco) REFERENCES Endereco(cod_endereco)
+);
+
+CREATE TABLE Funcionario (
+    cod_usuario INT NOT NULL,
+    nome VARCHAR(50),
+    cod_endereco INT,
+    cod_telefone VARCHAR (14),
+    cod_documento VARCHAR (50),
+    cod_setor INT,
+    cod_circulacao INT,
+    PRIMARY KEY (cod_usuario),
+    FOREIGN KEY (cod_documento) REFERENCES Documento(cod_documento),
+    FOREIGN KEY (cod_telefone) REFERENCES Telefone(cod_telefone),
+    FOREIGN KEY (cod_circulacao) REFERENCES Circulacao(cod_circulacao),
+    FOREIGN KEY (cod_endereco) REFERENCES Endereco(cod_endereco),
+    FOREIGN KEY (cod_setor) REFERENCES Setor(cod_setor)
+);
+
+
+CREATE TABLE UsuarioExterno (
+    cod_usuario INT NOT NULL,
+    nome VARCHAR(50),
+    cod_endereco INT,
+    cod_telefone VARCHAR (14),
+    cod_documento VARCHAR(50),
+    vinculo VARCHAR (50),
+    cod_circulacao INT,
+    PRIMARY KEY (cod_usuario),
+    FOREIGN KEY (cod_documento) REFERENCES Documento(cod_documento),
+    FOREIGN KEY (cod_telefone) REFERENCES Telefone(cod_telefone),
+    FOREIGN KEY (cod_circulacao) REFERENCES Circulacao(cod_circulacao),
+    FOREIGN KEY (cod_endereco) REFERENCES Endereco(cod_endereco)
+);
+
+
+CREATE TABLE Setor (
+    cod_setor INT NOT NULL,
+    nome_setor VARCHAR (20),
+    PRIMARY KEY (cod_setor)
+);
+
+
+CREATE TABLE Curso (
+    cod_curso INT NOT NULL,
+    nome_curso VARCHAR (30),
+    materias VARCHAR (300),
+    autorizacao_mec VARCHAR (20),
+    PRIMARY KEY (cod_curso),
+    UNIQUE (autorizacao_mec)
+);
+
+
+
+//
+cod_ usuário: autocomplemento: tipo_usuario + serial
